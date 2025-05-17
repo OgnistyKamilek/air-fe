@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {WeatherService} from './weather.service';
+import {AsyncPipe} from '@angular/common';
+import {Observable} from 'rxjs';
+import {HeaderComponent} from './header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, AsyncPipe, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'air-fe';
+  private weatherService = inject(WeatherService);
+  stations$: Observable<any> = this.weatherService.getStations()
+
+
 }
