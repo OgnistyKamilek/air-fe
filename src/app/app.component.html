@@ -1,10 +1,12 @@
 
 @let stations = stations$ | async;
+@let archives = archives$ | async;
 <app-header></app-header>
-<!--
+
+
 <ul>
-  @for(station of stations['Lista metadanych stacji pomiarowych']; track station.Nr) {
-    <li>{{station['Kod stacji']}}</li>
+  @for(station of stations; track station.Nr) {
+    <li>{{station.stationName }} (ID: {{ station.id }})</li>
   }
 </ul>
--->
+
