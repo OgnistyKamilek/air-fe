@@ -8,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  ngOnInit(): void {
+    const mobileNav = document.querySelector('.main-nav ul');
+    const burgerIcon = document.querySelector('.burger-linie');
+
+    if (mobileNav instanceof HTMLElement && burgerIcon instanceof HTMLElement) {
+      burgerIcon.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        burgerIcon.classList.toggle('active');
+      });
+    } else {
+      console.error('Elementy nie zostały znalezione w DOM.');
+    }
+  }
 }
