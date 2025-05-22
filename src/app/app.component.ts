@@ -17,6 +17,7 @@ export class AppComponent {
   title = 'air-fe';
   private weatherService = inject(WeatherService);
   stations$: Observable<any> = this.weatherService.getStations()
+  archives$: Observable<any> = this.weatherService.getArchives()
 
 
 }
