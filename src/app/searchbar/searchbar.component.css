@@ -43,6 +43,7 @@
   align-items: center;
   min-width: 350px;
   width: 29%;
+  height: 70%;
   padding: 40px 0;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(1px);
@@ -50,7 +51,7 @@
 }
 
 .introduction h1 {
-  font-size: clamp(17px, 1.4vw, 50px);
+  font-size: clamp(18px, 1.4vw, 50px);
   letter-spacing: 1px;
   font-weight: 700;
   color: #5c5c5c;
@@ -59,9 +60,17 @@
 }
 
 .introduction p {
-  font-size: clamp(12px, 0.6vw,30px);
+  font-size: clamp(11px, 0.6vw, 34px);
   color: #5c5c5c;
   margin-bottom: 7%;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: transform 1s ease;
 }
 
 input {
@@ -70,30 +79,26 @@ input {
   height: 50px;
   border-radius: 80px;
   font-size: 0.8rem;
-  /*box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.6);*/
-  transition: transform 1s ease, box-shadow 0.3s ease;
+  transition: transform 1s ease, box-shadow 0.2s ease;
   border: none;
   outline: none;
   box-shadow: 0 5px 5px -5px gray;
-}
-
-.input-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  cursor: text;
 }
 
 .input-container img {
-  width: 6%;
-  opacity: 0.7;
-  margin-right: 2%;
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 75%;
+  width: 7%;
+  opacity: 0.5;
+  margin-left: 2%;
+  cursor: text;
 }
 
 .introduction input:focus {
-  box-shadow: 0 0 5px 3px rgba(0, 200, 100, 0.4);
-  transform: scale(1.01);
+  box-shadow: 0 0 0 4px rgba(0, 0, 255, 0.2);
 }
 
-.introduction input:hover {
-  transform: scale(1.01);
-}
+

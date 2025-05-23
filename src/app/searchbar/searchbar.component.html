@@ -1,11 +1,13 @@
 <div class="search-bar-container">
   <section class="search-bar">
   <div class="introduction">
-    <h1>FIND OUT MORE ABOUT YOUR CITY</h1>
-    <p><em>Historical data, recent measurements</em></p>
+    <h1>Do you know what You breath?</h1>
+    <p><em>Trace the cleanliness of the air around you</em></p>
     <div class="input-container">
-      <img src="/magnifying-glass-location-solid.svg">
-      <input type="text" placeholder="Find your city">
+      <label for="search-input">
+        <img src="/magnifying-glass-location-solid.svg">
+      </label>
+      <input type="text" id="search-input" placeholder="Search your city" onfocus="this.placeholder=''" onblur="this.placeholder='Search your city'">
     </div>
 
   </div>
