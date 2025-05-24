@@ -1,5 +1,6 @@
 
 .main-header {
+  position: relative;
   background: #ffffff;
   width: 100vw;
   height: 60px;
@@ -41,6 +42,14 @@
   align-items: center;
   padding: 0;
 }
+
+.main-nav ul.active {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 
 .main-nav ul li {
   display: flex;
@@ -102,7 +111,43 @@
 @media only screen and (max-width: 1024px) {
     .burger-linie {
         display: block;
+        position: absolute;
+        top: 13px;
+        right: 0;
         transition: .3s ease-in-out;
+
+    }
+   
+    .main-nav ul {
+      position: absolute;
+      right: 0;
+      top: 65px;
+      padding: 2rem 0;
+      width: 0;
+      min-width: fit-content;
+      display: none;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.8vw;
+      background-color: #585757;
+      flex-direction: column;
+      text-align: center;
+      transform: translateX(100%);
+      transition: .3s ease-in-out;
+      opacity: 0;
+      visibility: visible;
+      pointer-events: auto;
+      z-index: 9999;
+    }
+
+
+    .main-nav ul.active {
+      transform: translateX(0%);
+      opacity: 1;
+      display: block;
+      visibility: visible;
+      pointer-events: auto;
+      width: 50vw;
     }
 
     .burger-linie.active .line:first-child {
@@ -117,38 +162,10 @@
         transform: rotate(-320deg) translateY(-9px);
     }
 
+     .burger-linie.active{
+       top: 7px;
+    }
     
-    .main-nav ul{
-        position: absolute;
-        right: 10px;
-        top: 69px;
-        height: auto;
-        padding: 2rem 0;
-        max-width: 90vw;
-        margin-right: 10px;
-        min-width: fit-content;
-        width: 10vw;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        
-        gap: 1.8vw;
-        background-color: #585757;
-        flex-direction: column;
-        text-align: center;
-        transform: translate(100%);
-        transition: .3s ease-in-out;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-
-    .main-nav ul.active{
-      transform: translate(0%);
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
      .main-nav ul li {
         display: block;
         padding: 0.8rem 0;
