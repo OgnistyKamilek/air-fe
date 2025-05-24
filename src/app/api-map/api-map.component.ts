@@ -54,7 +54,7 @@ export class ApiMapComponent implements OnInit {
     L.tileLayer('https://tiles.aqicn.org/tiles/usepa-aqi/{z}/{x}/{y}.png?token=ca09e110edc3446687444ae2b99bd6f278c12815', {
       attribution: '© AQICN.org',
       maxZoom: 18,
-      minZoom: 5
+      minZoom: 5,
     }).addTo(this.map);
   }
 }
