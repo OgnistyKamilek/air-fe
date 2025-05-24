@@ -1,26 +1,18 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap, map} from 'rxjs';
+import {tap} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
-  deps: [HttpClient]
+
 })
-
-
 export class WeatherService {
-  private httpClient = inject(HttpClient)
+  private apiUrl = 'https://api.waqi.info/feed/beijing/?token=ca09e110edc3446687444ae2b99bd6f278c12815';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  getStations() {
-    return this.httpClient.get('/pjp-api/v1/rest/station/findAll').pipe(tap(value => console.log(value)));
-  }
-
-  getArchives() {
-    return this.httpClient.get("/pjp-api/v1/rest/archivalData/getDataForAllStations").pipe(
-      tap(res => console.log("surowa odpowiedź: ", res)),
-      map((res: any) => res["lista stacji pomiarowych"] || []));
+  getAQI(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 }
-
