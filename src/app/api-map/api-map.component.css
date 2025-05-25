@@ -1,0 +1,39 @@
+.map-section {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 700px;
+  filter: brightness(90%) grayscale(0.1);
+  z-index: 1;
+  border-top: #bababa 2px solid;
+  border-bottom: #bababa 2px solid;
+}
+
+.legend {
+  background: #ececec;
+  width: 20%;
+  height: 85%;
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 4px;
+  border: #717171 1px solid;
+  box-shadow: #303030 0 0 8px 0;
+
+
+}
+
+
+
+

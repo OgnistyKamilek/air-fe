@@ -1,0 +1,9 @@
+
+{
+  "/pjp-api": {
+    "target": "https://api.gios.gov.pl",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

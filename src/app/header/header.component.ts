@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -13,7 +14,7 @@ export class HeaderComponent {
 
 
     const mobileNav = document.querySelector('.main-nav ul');
-    const burgerIcon = document.querySelector('.burger-linie');
+    const burgerIcon = document.querySelector('.burger-line');
 
     function openMenu() {
       if (!(mobileNav instanceof HTMLElement) || !(burgerIcon instanceof HTMLElement)) return;
@@ -67,7 +68,7 @@ export class HeaderComponent {
 
       burgerIcon.addEventListener('click', () => {
         const isMobile = window.innerWidth <= 1024;
-        
+
         if (!isMobile) return;
 
         if (mobileNav.classList.contains('active')) {
@@ -75,9 +76,9 @@ export class HeaderComponent {
           } else {
             openMenu();
           }
-       
+
       });
-      
+
     // Usuwanie burgera po przejściu na normalny widok
       window.addEventListener('resize', () => {
 
@@ -86,7 +87,7 @@ export class HeaderComponent {
         } else {
           closeMenu();
         }
-         
+
       });
       // Zamykanie po kliknięciu w dowolny link w menu
       const navLinks = document.querySelectorAll('.main-nav ul li a');
@@ -100,7 +101,7 @@ export class HeaderComponent {
       document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
         const clickedOutside = !mobileNav.contains(target) && !burgerIcon.contains(target);
-      
+
         if (clickedOutside && mobileNav.classList.contains('active')) {
           closeMenu();
         }
@@ -108,9 +109,9 @@ export class HeaderComponent {
     } else {
       console.error('Elementy nie zostały znalezione w DOM.');
     }
-     
-   
-    
+
+
+
 
   }
 }

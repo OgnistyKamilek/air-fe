@@ -27,7 +27,7 @@
 
 .logo a {
   text-decoration: none;
-  color: #18b14b;
+  color: #13c68aff;
   font-size: 4.5rem;
   font-family: Exile, sans-serif;
 }
@@ -63,7 +63,8 @@
   text-decoration: none;
   font-size: 1.3rem;
   color: #5c5c5c;
-  font-family: Funnel Sans, sans-serif;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
 }
 
 .main-nav a:hover {
@@ -90,7 +91,7 @@
   color: #2e2e2e;
 }
 
-.burger-linie {
+.burger-line {
     background: transparent;
     border: none;
     outline: none;
@@ -109,15 +110,14 @@
 
 
 @media only screen and (max-width: 1024px) {
-    .burger-linie {
+    .burger-line {
         display: block;
         position: absolute;
         top: 13px;
         right: 0;
         transition: .3s ease-in-out;
-
     }
-   
+
     .main-nav ul {
       position: absolute;
       right: 0;
@@ -150,30 +150,31 @@
       width: 50vw;
     }
 
-    .burger-linie.active .line:first-child {
+    .burger-line.active .line:first-child {
         transform: translateY(-300px);
     }
 
-    .burger-linie.active .line:nth-child(2) {
+    .burger-line.active .line:nth-child(2) {
         transform: rotate(-405deg) translateY(9px);
     }
 
-    .burger-linie.active .line:nth-child(3) {
+    .burger-line.active .line:nth-child(3) {
         transform: rotate(-320deg) translateY(-9px);
     }
 
-     .burger-linie.active{
+     .burger-line.active{
        top: 7px;
     }
-    
+
      .main-nav ul li {
         display: block;
         padding: 0.8rem 0;
         width: 100%;
     }
 
-    
+
     .nav-actions{
+      display: none;
       position: absolute;
       right: 50px;
       height: 92vh;
@@ -189,7 +190,7 @@
         padding: 1rem 2rem;
         max-width: 90vw;
         margin: 0 auto;
-        text-align: center; 
+        text-align: center;
         position: relative;
     }
     .main-nav a::after {

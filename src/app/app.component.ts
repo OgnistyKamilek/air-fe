@@ -5,18 +5,19 @@ import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs';
 import {HeaderComponent} from './header/header.component';
 import {SearchbarComponent} from './searchbar/searchbar.component';
+import {ApiMapComponent} from './api-map/api-map.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, AsyncPipe, HeaderComponent, SearchbarComponent],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, AsyncPipe, HeaderComponent, SearchbarComponent, ApiMapComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
-  title = 'air-fe';
-  private weatherService = inject(WeatherService);
-  stations$: Observable<any> = this.weatherService.getStations()
-
-
+  // title = 'air-fe';
+  // private weatherService = inject(WeatherService);
+  // stations$: Observable<any> = this.weatherService.getStations()
 }
