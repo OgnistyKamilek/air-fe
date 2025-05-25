@@ -1,11 +1,12 @@
-<div class="api-container">
-  <section class="legend">
 
-  </section>
-  <div id="map"></div>
-  <div *ngIf="aqi !== null">
-    <h2>Aktualne AQI: {{ aqi }}</h2>
+<div class="map-section">
+  <div class="map-wrapper">
+    <section class="legend" *ngIf="aqi !== null">
+      <!--<p><strong>Current AQI:</strong> {{ aqi }}</p>-->
+      <div class="aqi-display">
+        <!--display the aqi level-->
+      </div>
+    </section>
+    <div id="map"></div>
   </div>
 </div>
-
-<

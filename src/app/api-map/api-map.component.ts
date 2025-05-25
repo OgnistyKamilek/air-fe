@@ -51,10 +51,10 @@ export class ApiMapComponent implements OnInit {
       attribution: '© OpenStreetMap',
     }).addTo(this.map);
 
-    L.tileLayer('https://tiles.aqicn.org/tiles/usepa-aqi/{z}/{x}/{y}.png?token=ca09e110edc3446687444ae2b99bd6f278c12815', {
-      attribution: '© AQICN.org',
-      maxZoom: 18,
-      minZoom: 5,
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://carto.com/">CartoDB</a>',
+      subdomains: 'abcd',
+      maxZoom: 18
     }).addTo(this.map);
   }
 }
