@@ -27,14 +27,6 @@ export class ApiMapComponent implements OnInit {
       this.aqi = data.data.aqi;
     });
 
-    // delete (L.Icon.Default.prototype as any)._getIconUrl;
-    // L.Icon.Default.mergeOptions({
-    //   iconRetinaUrl: 'assets/marker-icon-2x.png',
-    //   iconUrl: 'assets/marker-icon.png',
-    //   shadowUrl: 'assets/marker-shadow.png'
-    // });
-
-
     this.map = L.map('map', {
       center: [52.237, 17.0],
       zoom: 7,
@@ -45,12 +37,6 @@ export class ApiMapComponent implements OnInit {
       position: 'topright'
     }).addTo(this.map);
 
-    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //   maxZoom: 18,
-    //   minZoom: 5,
-    //   attribution: '© OpenStreetMap',
-    // }).addTo(this.map);
-
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://carto.com/">CartoDB</a>',
       subdomains: 'abcd',
@@ -58,11 +44,41 @@ export class ApiMapComponent implements OnInit {
       minZoom: 5,
     }).addTo(this.map);
 
-     L.tileLayer('https://tiles.aqicn.org/tiles/usepa-aqi/{z}/{x}/{y}.png?token=ca09e110edc3446687444ae2b99bd6f278c12815', {
-      attribution: '© AQICN.org',
+    L.tileLayer('https://tiles.aqicn.org/tiles/usepa-aqi/{z}/{x}/{y}.png?token=ca09e110edc3446687444ae2b99bd6f278c12815', {
+      attribution: '&copy; <a href="https://aquicn.org"> AQICN.org</a>',
       maxZoom: 18,
       minZoom: 5,
     }).addTo(this.map);
+
+    this.map.on('click', (e: L.LeafletMouseEvent) => {
+      const { lat, lng } = e.latlng;
+      fetch(`https://api.waqi.info/feed/geo:${lat};${lng}/?token=ca09e110edc3446687444ae2b99bd6f278c12815`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          this.aqi = data.data.aqi;
+          const city = data.data.city?.name ?? 'Unknown city';
+          const iaqi = data.data.iaqi;
+          const pm25 = iaqi?.pm25?.v ?? 'No data';
+          const pm10 = iaqi?.pm10?.v ?? 'No data';
+          const o3 = iaqi?.o3?.v ?? 'No data';
+          if (typeof pm25 === 'number') {
+            (document.getElementById('pm25') as HTMLElement).innerText =`PM2,5: ${pm25}` ;
+          }
+          document.getElementById('city-name')!.innerText = `Station: ${city}`;
+          // (document.getElementById('pm25') as HTMLElement).innerText = `PM2.5: ${pm25}`;
+          (document.getElementById('pm10') as HTMLElement).innerText = `PM10: ${pm10}`;
+          (document.getElementById('ozone') as HTMLElement).innerText = `Ozon (O₃): ${o3}`;
+          console.log('Clicked AQI:', this.aqi);
+          L.popup()
+          .setLatLng(e.latlng)
+          .setContent(`AQI: ${pm25}<br>${data.data.city.name}`)
+          .openOn(this.map);
+        }
+      })
+        .catch(err => console.error('Błąd pobierania danych AQI:', err));;
+    });
+
   }
 }
 

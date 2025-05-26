@@ -13,9 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
   background:
-    linear-gradient(rgba(19, 198, 138, 0.15), rgba(19, 198, 138, 0.01))
+    linear-gradient(rgba(19, 198, 138, 0.4), rgba(19, 198, 138, 0.01))
 }
 
 .search-bar {
