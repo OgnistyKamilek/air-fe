@@ -15,10 +15,7 @@
   align-items: center;
   margin-bottom: 100px;
   background:
-    linear-gradient(rgba(19, 198, 138, 0.15), rgba(19, 198, 138, 0.01)),
-    url('/assets/images/search-background.png');
-    /*#13c68aff;*/
-  /*background-image: url('/search-background.png');*/
+    linear-gradient(rgba(19, 198, 138, 0.15), rgba(19, 198, 138, 0.01))
 }
 
 .search-bar {
