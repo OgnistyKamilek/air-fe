@@ -123,7 +123,7 @@
 }
 
 .description {
-  font-size: clamp(8px, 0.8vw, 16px);
+  font-size: clamp(8px, 0.8vw, 19px);
   font-weight: 400;
   text-align: center;
   width: 100%;
@@ -138,7 +138,7 @@
 
 .description-extra-info a {
   display: inline-block;
-  font-size: clamp(6px, 0.5vw, 12px);
+  font-size: clamp(6px, 0.5vw, 13px);
   color: #444;
   text-align: center;
   text-decoration: none;
@@ -149,7 +149,7 @@
   height: 10px;
   fill: #444;
   vertical-align: middle;
-  margin: auto 0 auto 1px;
+  margin: auto 0 auto 3px;
 }
 
 .legend-body {
