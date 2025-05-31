@@ -31,7 +31,9 @@
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/chart.umd.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,7 +91,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/chart.umd.js"
+            ]
           }
         }
       }
