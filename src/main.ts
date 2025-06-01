@@ -9,6 +9,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter(routes),
-    provideCharts(withDefaultRegisterables()) 
+    provideCharts(withDefaultRegisterables())
   ]
 }).catch((err) => console.error(err));
