@@ -1,12 +1,42 @@
-
 <div class="map-section">
   <div class="map-wrapper">
-    <section class="legend" *ngIf="aqi !== null">
-      <!--<p><strong>Current AQI:</strong> {{ aqi }}</p>-->
-      <div class="aqi-display">
-        <!--display the aqi level-->
+    <div id="map"></div>
+    <section class="legend">
+      <div class="legend-quit">X</div>
+      <div class="legend-header">
+        <div class="city-name">
+          <div id="city-name"></div>
+        </div>
+        <div class="air-quality">
+          <div class="air-quality-index">
+            <p>{{ aqi }} AQI</p>
+          </div>
+          <div class="air-quality-description">
+            <p class="description"></p>
+            <div class="description-extra-info">
+              <a href="https://www.airnow.gov/aqi/aqi-basics/">Learn about AQI levels</a>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="10" height="10" viewBox="0 0 512 512">
+                <path d="M448 64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h41.4L201 288.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L406.6 173.3V216c0 17.7 14.3 32 32 32s32-14.3 32-32V96c0-17.7-14.3-32-32-32zM80 64C35.8 64 0 99.8 0 144V432c0 44.2 35.8 80 80 80H368c44.2 0 80-35.8 80-80V304c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16H208c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="legend-body">
+        <div class="results-header">
+          <img class="img" src="/earth-americas-solid.svg" alt="globe icon">
+          <h1>Recent results</h1>
+        </div>
+        <div class="measurements">
+          <div id="pm25"></div>
+          <div id="pm10"></div>
+          <div id="ozone"></div>
+
+          <div id="chart-wrapper">
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
       </div>
     </section>
-    <div id="map"></div>
   </div>
 </div>
