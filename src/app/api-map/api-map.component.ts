@@ -14,7 +14,7 @@ const today = date.split('T')[0];
   templateUrl: './api-map.component.html',
   styleUrl: './api-map.component.css',
   standalone: true,
-  imports: [AsyncPipe, CommonModule]
+  imports: [CommonModule]
 })
 
 export class ApiMapComponent implements OnInit {

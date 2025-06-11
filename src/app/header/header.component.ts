@@ -11,10 +11,8 @@ export class HeaderComponent {
 
   ngOnInit(): void {
 
-
-
     const mobileNav = document.querySelector('.main-nav ul');
-    const burgerIcon = document.querySelector('.burger-line');
+    const burgerIcon = document.querySelector('.burger-button');
 
     function openMenu() {
       if (!(mobileNav instanceof HTMLElement) || !(burgerIcon instanceof HTMLElement)) return;
@@ -34,7 +32,6 @@ export class HeaderComponent {
       burgerIcon.classList.remove('active');
       burgerIcon.setAttribute('aria-expanded', 'false');
 
-      // Po zakończeniu animacji (300ms) ukrywamy display
       setTimeout(() => {
         mobileNav.style.display = 'none';
       }, 300);
