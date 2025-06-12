@@ -1,16 +1,41 @@
 * {
   margin: 0;
   padding: 0;
-  color: #333;
   box-sizing: border-box;
-  font-family: Montserrat, sans-serif;
+}
+
+.title {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 160px;
+  padding-left: 10px;
+  background: linear-gradient(
+    135deg, rgba(19, 198, 138, 0.15) 0%, rgba(255, 255, 255, 0) 60%
+  );
+
+}
+
+.name {
+  font-size: clamp(30px, 2vw, 50px);
+  font-weight: 600;
+  color: black;
+  padding: 7px;
+}
+
+.desc {
+  font-size: clamp(16px, 0.6vw, 17px);
+  color: black;
+  padding: 7px;
 }
 
 
 .map-section {
   overflow: hidden;
   width: 100%;
-  padding: 50px 0;
+  padding: 10px 0;
+
 }
 
 .map-wrapper {
@@ -18,9 +43,9 @@
   z-index: 2;
   overflow: hidden;
   margin: 0 auto;
-  width: 90%;
-  height: 900px;
-  background: #eee;
+  width: 100%;
+  height: 750px;
+  box-shadow: 0 -6px 12px -6px rgba(0, 0, 0, 0.2);
 }
 
 #map {
@@ -29,22 +54,24 @@
   margin: 0 auto;
   filter: brightness(90%);
   z-index: 1;
-  border-top: #bababa 2px solid;
-  border-bottom: #bababa 2px solid;
+  border-top: #13c68aff 2px solid;
+  border-bottom: #13c68aff 2px solid;
 }
 
 .legend {
   z-index: 1;
   position: absolute;
-  top: 10%;
-  left: -27%;
+  top: 1%;
+  left: -30%;
   display: flex;
   flex-direction: column;
-  background: #ececec;
-  width: 25%;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 20%;
   min-width: 300px;
   max-width: 550px;
-  height: 80%;
+  height: 98%;
   border-radius: 4px;
   border: #717171 1px solid;
   box-shadow: #303030 0 0 8px 0;
@@ -57,34 +84,36 @@
   top: 2px;
   right: 6px;
   cursor: pointer;
-  color: #777;
+  color: black;
   font-size: 2rem;
 }
 
 .legend-header {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  color: black;
+  background: #6ee7b7;
   width: 100%;
-  height: 30%;
-  background-image: url("/search-background.png");
+  height: 21%;
   background-size: 100% 100%;
-  background-repeat: no-repeat;
-  filter: brightness(110%) hue-rotate(290deg) saturate(1.6);
-  /*transition: all 0.2s ease-out;*/
+  object-fit: cover;
+  aspect-ratio: 16/9;
 }
 
 .city-name {
+  font-family: Montserrat, sans-serif;
+  color: black;
   margin-top: 4%;
   padding: 0 2%;
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 20%;
-  backdrop-filter: blur(2px);
+  height: 25%;
 }
 
 #city-name {
-  font-size: clamp(20px, 1.3vw, 30px);
-  color: #444;
-  font-weight: 400;
+  font-size: clamp(20px, 1.3vw, 20px);
+  color: black;
 }
 
 .air-quality {
@@ -92,14 +121,13 @@
   flex-direction: column;
   height: 80%;
   width: 100%;
-  backdrop-filter: blur(2px);
 }
 
 .air-quality-index {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 5%;
+  padding-top: 1%;
   width: 100%;
   height: 40%;
 }
@@ -112,8 +140,8 @@
 /*  font-weight: 400;*/
 /*}*/
 
-.air-quality-index  p {
-  font-size: clamp(16px, 3.1vw, 50px);
+.air-quality-index p {
+  font-size: clamp(16px, 3.1vw, 35px);
   display: flex;
   color: #222;
 }
@@ -141,7 +169,7 @@
 .description-extra-info a {
   display: inline-block;
   font-size: clamp(6px, 0.5vw, 13px);
-  color: #444;
+  color: black;
   text-align: center;
   text-decoration: none;
 }
@@ -149,13 +177,12 @@
 .description-extra-info .icon {
   width: 10px;
   height: 10px;
-  fill: #444;
+  fill: black;
   vertical-align: middle;
   margin: auto 0 auto 3px;
 }
 
 .legend-body {
-  background: #efefef;
   width: 100%;
   height: 70%;
   padding: 2%;
@@ -181,7 +208,11 @@
 }
 
 .measurements {
-
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 #chart-wrapper {
@@ -195,4 +226,68 @@
 
 #chart {
 
+}
+
+.pollutant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: conic-gradient(green 0%, lightgray 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.inner {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.label {
+  text-align: center;
+}
+
+.label span:first-child {
+  font-weight: bold;
+  display: block;
+  font-size: 12px;
+}
+
+.label span:last-child {
+  font-size: 11px;
+  color: black
+}
+
+.subheading {
+  font-size: clamp(10px, 1vw, 14px);
+  font-weight: 400;
+  color: #444;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.weather-measurements {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
