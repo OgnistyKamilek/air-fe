@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AsyncPipe } from '@angular/common'
-import { CommonModule } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common'
 import * as L from 'leaflet';
 import {Chart, registerables} from 'chart.js';
 
@@ -14,7 +13,7 @@ const today = date.split('T')[0];
   templateUrl: './api-map.component.html',
   styleUrl: './api-map.component.css',
   standalone: true,
-  imports: [AsyncPipe, CommonModule]
+  imports: [CommonModule]
 })
 
 export class ApiMapComponent implements OnInit {
@@ -32,10 +31,12 @@ export class ApiMapComponent implements OnInit {
     this.map = L.map('map', {
       center: [52.2, 17.0],
       zoom: 7,
-      zoomControl: false
+      zoomControl: false,
+      scrollWheelZoom: false
     });
     L.control.zoom({position: 'topright'}).addTo(this.map);
   }
+
 
   private addTileLayers(): void {
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -74,25 +75,31 @@ export class ApiMapComponent implements OnInit {
     this.aqi = data.data.aqi;
     const city = data.data.city?.name ?? 'Unknown city';
     const iaqi = data.data.iaqi;
+    const weather = {
+      temp: iaqi?.t?.v ?? null,
+      humidity: iaqi?.h?.v ?? null,
+      pressure: iaqi?.p?.v ?? null,
+      wind: iaqi?.w?.v ?? null
+    };
     const forecast = data.data.forecast.daily.pm25;
 
-    this.updateLegend(city, iaqi, forecast);
+    this.updateLegend(city, iaqi, forecast, weather);
     this.updateChart(forecast);
-    // this.showPopup(latlng, this.aqi, city); -> opcjonalnie, chyba się obejdziemy
   }
 
-  private updateLegend(city: string, iaqi: any, forecast: any): void {
+  private updateLegend(city: string, iaqi: any, forecast: any, weather: any): void {
     const pm25 = iaqi?.pm25?.v ?? 'No data';
     const pm10 = iaqi?.pm10?.v ?? 'No data';
     const o3 = iaqi?.o3?.v ?? 'No data';
+
 
     const legend = document.querySelector('.legend') as HTMLElement;
     const legendExit = document.querySelector('.legend-quit') as HTMLElement;
     const legendElement = document.querySelector('.legend-header') as HTMLElement;
     const aqiStatus = document.querySelector('.description') as HTMLElement | null;
 
-    legend.style.left = '7%';
-    legendExit.onclick = () => legend.style.left = '-27%';
+    legend.style.left = '1%';
+    legendExit.onclick = () => legend.style.left = '-30%';
 
     const qualityStatus = [
       'Air quality is satisfactory. Enjoy the day.',
@@ -103,36 +110,32 @@ export class ApiMapComponent implements OnInit {
       'Extremely dangerous. Do not go outside.'
     ];
 
-    let rotate = 0, grayscale = 0, brightness = 1.1, saturate = 1.6, status = 0;
-    if (aqiStatus && typeof this.aqi === 'number') {
-      if (this.aqi <= 50) {
-        rotate = 290;
+    if (legendElement && typeof this.aqi === 'number') {
+      let backgroundColor = '';
+      let status = 0;
+
+      if (this.aqi <= 30) {
+        backgroundColor = '#09c353';
         status = 0;
-      } else if (this.aqi <= 100) {
-        rotate = 240;
+      } else if (this.aqi <= 50) {
+        backgroundColor = '#95c309';
         status = 1;
-      } else if (this.aqi <= 150) {
-        rotate = 170;
-        saturate = 2;
+      } else if (this.aqi <= 80) {
+        backgroundColor = '#c3aa09';
         status = 2;
-      } else if (this.aqi <= 200) {
-        rotate = 140;
-        saturate = 1.5;
+      } else if (this.aqi <= 110) {
+        backgroundColor = '#ffa707';
         status = 3;
-      } else if (this.aqi <= 300) {
-        rotate = 70;
-        saturate = 1;
+      } else if (this.aqi <= 150) {
+        backgroundColor = '#bd4500';
         status = 4;
       } else {
-        rotate = 120;
-        grayscale = 0.95;
-        saturate = 3;
-        brightness = 0.95;
+        backgroundColor = '#c30909';
         status = 5;
       }
 
-      legendElement.style.filter = `hue-rotate(${rotate}deg) grayscale(${grayscale}) saturate(${saturate}) brightness(${brightness})`;
-      aqiStatus.innerText = qualityStatus[status]
+      legendElement.style.backgroundColor = backgroundColor;
+      if (aqiStatus) aqiStatus.innerText = qualityStatus[status];
     }
 
     if (city.length <= 25) {
@@ -142,9 +145,63 @@ export class ApiMapComponent implements OnInit {
       document.getElementById('city-name')!.innerText = `${cutCity}`;
     }
 
-    (document.getElementById('pm25') as HTMLElement).innerText = `PM2,5: ${pm25}`;
-    (document.getElementById('pm10') as HTMLElement).innerText = `PM10: ${pm10}`;
-    (document.getElementById('ozone') as HTMLElement).innerText = `Ozone (O₃): ${o3}`;
+    const labelPM25 = document.getElementById('pm25-value');
+    const labelPM10 = document.getElementById('pm10-value');
+    const labelO3 = document.getElementById('ozone-value');
+    if (labelPM25) labelPM25.innerText = `${pm25} µg/m³`;
+    if (labelPM10) labelPM10.innerText = `${pm10} µg/m³`;
+    if (labelO3) labelO3.innerText = `${o3} µg/m³`;
+
+    this.updateRing('pm25', pm25, 75);
+    this.updateRing('pm10', pm10, 100);
+    this.updateRing('ozone', o3, 200);
+
+    if (weather.temp !== null) {
+      this.updateWeatherRing('temp', weather.temp, 40, '°C');
+    }
+    if (weather.humidity !== null) {
+      this.updateWeatherRing('humidity', weather.humidity, 100, '%');
+    }
+    if (weather.pressure !== null) {
+      this.updateWeatherRing('pressure', weather.pressure, 1100, 'hPa');
+    }
+    if (weather.wind !== null) {
+      this.updateWeatherRing('wind', weather.wind, 30, 'm/s');
+    }
+  }
+
+  private updateWeatherRing(id: string, value: number, max: number, unit: string): void {
+    const ring = document.getElementById(`${id}-ring`);
+    const label = document.getElementById(`${id}-value`);
+    if (!ring || !label) return;
+
+    // NIE używamy conic-gradient – tylko szare tło
+    (ring as HTMLElement).style.background = `#3ea7ec`; // lub inny neutralny kolor
+
+    label.innerText = `${value} ${unit}`;
+  }
+
+  private updateRing(id: string, value: number, max: number): void {
+    const ring = document.getElementById(`${id}-ring`);
+    const label = document.getElementById(`${id}-value`);
+    if (!ring || !label) return;
+
+    const percent = Math.min(Math.max(value / max, 0), 1);
+    const degrees = percent * 360;
+
+    const color = this.getColorFromPercent(percent);
+
+    (ring as HTMLElement).style.background = `conic-gradient(${color} ${degrees}deg, lightgray 0deg)`;
+
+    label.innerText = `${value} µg/m³`;
+  }
+
+  private getColorFromPercent(percent: number): string {
+    if (percent <= 0.2) return '#2ecc71';
+    if (percent <= 0.4) return '#f1c40f';
+    if (percent <= 0.6) return '#e67e22';
+    if (percent <= 0.8) return '#e74c3c';
+    return '#c0392b';
   }
 
   private updateChart(forecast: any[]): void {
@@ -158,11 +215,11 @@ export class ApiMapComponent implements OnInit {
       datasets: [{
         label: 'PM2.5 Forecast',
         data: values,
-        backgroundColor: 'rgba(70, 180, 100, 0.4)',
-        borderColor: '#efefef',
+        backgroundColor: 'rgb(32,152,92)',
+        borderColor: '#393939',
         borderWidth: 1,
-        barPercentage: 1.0,
-        categoryPercentage: 1.0,
+        barPercentage: 0.6,
+        categoryPercentage: 0.8
       }]
     };
 
@@ -175,16 +232,30 @@ export class ApiMapComponent implements OnInit {
       type: 'bar',
       data: chartData,
       options: {
-        scales: {
-          y: {beginAtZero: true},
-          x: {
-            grid: {display: false},
-            ticks: {autoSkip: false}
+        plugins: {
+          legend: {display: false},
+          tooltip: {
+            enabled: true
           }
         },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              precision: 0
+            }
+          },
+          x: {
+            display: false
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false
       }
     });
   }
+
+
   //OPCJONALNY POP-UP
   // private showPopup(latlng: L.LatLng, aqi: number, city: string): void {
   // L.popup()
