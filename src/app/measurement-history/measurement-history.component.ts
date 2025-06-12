@@ -34,8 +34,10 @@ interface DailyAggregate {
   templateUrl: './measurement-history.component.html',
   styleUrls: ['./measurement-history.component.css']
 })
+
 export class MeasurementHistoryComponent {
   maxDate: string;
+  minDate: string;
   isLoading = false;
   private dailyAirQuality: DailyAggregate[] = [];
 
@@ -56,6 +58,7 @@ export class MeasurementHistoryComponent {
   constructor(private http: HttpClient) {
     const today = new Date();
     this.maxDate = today.toISOString().split('T')[0];
+    this.minDate = '2013-01-01';
   }
 
   async onSubmit(formValues: {

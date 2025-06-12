@@ -11,3 +11,18 @@ body {
   max-width: 2600px;
   margin: 0 auto;
 }
+
+d {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+app-auth {
+  position: fixed !important;
+  z-index: 9999 !important;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+}
