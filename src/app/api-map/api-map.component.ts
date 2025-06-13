@@ -213,7 +213,7 @@ export class ApiMapComponent implements OnInit {
     const chartData = {
       labels: days,
       datasets: [{
-        label: 'PM2.5 Forecast',
+        label: 'AQI',
         data: values,
         backgroundColor: 'rgb(32,152,92)',
         borderColor: '#393939',

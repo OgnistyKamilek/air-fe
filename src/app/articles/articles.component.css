@@ -33,6 +33,7 @@
   color: black;
   padding: 7px;
   margin-top: -5px;
+  font-weight: 400;
 }
 
 .article-section {
@@ -54,14 +55,15 @@
   width: 22%;
   height: 90%;
   list-style: none;
-  border: 1px solid #000000;
+  /*border: 1px solid #000000;*/
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   border-radius: 10px;
   overflow: hidden;
-  transition: 0.4s ease;
+  transition: 0.3s ease;
 }
 
 .article:hover {
-  outline: 1px solid black;
+  box-shadow: 0 0 0 4px rgb(0, 255, 169);
   outline-offset: 0;
   border-radius: 20px;
   transition: 0.4s ease;
@@ -106,6 +108,7 @@
 
 .article-desc {
   text-align: justify;
+  font-weight: 400;
 }
 
 .article-button {

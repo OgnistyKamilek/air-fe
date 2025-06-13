@@ -67,6 +67,7 @@ input {
   transition: box-shadow 0.2s ease;
   cursor: pointer;
 }
+
 button {
   margin: 20px 0;
 }
