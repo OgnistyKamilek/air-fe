@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common'
-import { CommonModule } from '@angular/common';
+
 import * as L from 'leaflet';
 import {Chart, registerables} from 'chart.js';
 
@@ -14,7 +14,7 @@ const today = date.split('T')[0];
   templateUrl: './api-map.component.html',
   styleUrl: './api-map.component.css',
   standalone: true,
-  imports: [CommonModule]
+  imports: []
 })
 
 export class ApiMapComponent implements OnInit {

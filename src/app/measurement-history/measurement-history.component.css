@@ -1,27 +1,39 @@
-.main-container {
-  background: linear-gradient(
-    rgba(19, 198, 138, 0.01),
-    rgba(19, 198, 138, 0.15),
-    rgba(19, 198, 138, 0.01)
-  );
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 900px;
-  margin: 20px auto;
+* {
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  cursor: default;
+  border: 0;
+  padding: 0;
 }
 
+.main-container {
+  border-radius: 10px;
+  width: 100%;
+  margin: 50px auto;
+
+}
+
+.filter-background {
+   background: linear-gradient(
+    rgba(19, 198, 138, 0.01),
+    rgba(19, 198, 138, 0.3),
+    rgba(19, 198, 138, 0.01)
+  );
+
+}
 .filter-container {
   max-width: 500px;
   margin: 20px auto;
   padding: 1rem;
-  border: 1px solid #ccc;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #fefefe;
 }
 
 .filter-container h2 {
+  font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 5px auto 20px auto;
 }
 
 form {
@@ -34,11 +46,36 @@ label {
   font-weight: bold;
 }
 
-input,
 select,
 button {
   padding: 0.5rem;
   font-size: 1rem;
+  border: #ccc solid 2px;
+  outline: none;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: #00eea9 solid 2px;
+  outline: none;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+button {
+  margin: 20px 0;
+}
+select:focus {
+  box-shadow: 0 0 0 4px #ccc;
+}
+
+input:focus {
+  box-shadow: 0 0 0 4px rgb(0, 255, 169);
 }
 
 .loading {
@@ -52,9 +89,15 @@ button {
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  max-width: 900px;
+  background: linear-gradient(
+    rgba(19, 198, 138, 0.04),
+    rgba(19, 198, 138, 0.05),
+    rgba(19, 198, 138, 0.04)
+  );
 }
-/*MOOOOOOOOOOOOOOOOOOOOOOOOOJE*/
-select {
-  height: 200px;
-}
+
+
+
+
+
