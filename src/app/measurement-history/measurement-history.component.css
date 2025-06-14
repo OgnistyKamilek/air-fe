@@ -1,0 +1,100 @@
+* {
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  cursor: default;
+  border: 0;
+  padding: 0;
+}
+
+.main-container {
+  border-radius: 10px;
+  width: 100%;
+  margin: 50px auto 300px auto;
+
+}
+
+.filter-background {
+   background: linear-gradient(
+    rgba(19, 198, 138, 0.01),
+    rgba(19, 198, 138, 0.3),
+    rgba(19, 198, 138, 0.01)
+  );
+
+}
+.filter-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 1rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background-color: #fefefe;
+}
+
+.filter-container h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 5px auto 20px auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+select,
+button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: #ccc solid 2px;
+  outline: none;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: #00eea9 solid 2px;
+  outline: none;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+button {
+  margin: 20px 0;
+}
+select:focus {
+  box-shadow: 0 0 0 4px #ccc;
+}
+
+input:focus {
+  box-shadow: 0 0 0 4px rgb(0, 255, 169);
+}
+
+.loading {
+  display: block;
+  color: blue;
+  margin: 10px 0;
+}
+
+.chart-container {
+  margin: 40px auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 900px;
+  background: linear-gradient(
+    rgba(19, 198, 138, 0.04),
+    rgba(19, 198, 138, 0.05),
+    rgba(19, 198, 138, 0.04)
+  );
+}
+

@@ -1,12 +1,159 @@
+<!--FONTS-->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link
+  href="https://fonts.googleapis.com/css2?family=Italiana&family=Lugrasimo&family=Ms+Madi&family=Poetsen+One&display=swap"
+  rel="stylesheet"/>
 
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link
+  href="https://fonts.googleapis.com/css2?family=Exile&family=Italiana&family=Lugrasimo&family=Ms+Madi&family=Poetsen+One&display=swap"
+  rel="stylesheet">
+
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link
+  href="https://fonts.googleapis.com/css2?family=Exile&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Italiana&family=Lugrasimo&family=Ms+Madi&family=Poetsen+One&display=swap"
+  rel="stylesheet">
+
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link
+  href="https://fonts.googleapis.com/css2?family=Exile&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Italiana&family=Lugrasimo&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ms+Madi&family=Poetsen+One&display=swap"
+  rel="stylesheet">
+<!--FONTS-->
+
+
+<div class="title">
+  <p class="name">World Map</p>
+  <p class="desc">
+    Learn about the air quality around you and beyond — Click on the indicators to learn more.
+  </p>
+</div>
 <div class="map-section">
   <div class="map-wrapper">
-    <section class="legend" *ngIf="aqi !== null">
-      <!--<p><strong>Current AQI:</strong> {{ aqi }}</p>-->
-      <div class="aqi-display">
-        <!--display the aqi level-->
+    <div id="map"></div>
+    <section class="legend">
+      <div class="legend-quit">x</div>
+      <div class="legend-header">
+        <div class="city-name">
+          <div id="city-name"></div>
+        </div>
+        <div class="air-quality">
+          <div class="air-quality-index">
+            <p>{{ aqi }} AQI</p>
+          </div>
+          <div class="air-quality-description">
+            <p class="description"></p>
+            <div class="description-extra-info">
+              <a href="https://www.airnow.gov/aqi/aqi-basics/">Learn about AQI levels</a>
+              <svg class="icon" height="10" viewBox="0 0 512 512" width="10" xmlns="http://www.w3.org/2000/svg">
+                <path d="M448 64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h41.4L201 288.4c-12.5 12.5-12.5 32.8 0
+                  45.3s32.8 12.5 45.3 0L406.6 173.3V216c0 17.7 14.3 32 32 32s32-14.3 32-32V96c0-17.7-14.3-32-32-32zM80
+                  64C35.8 64 0 99.8 0 144V432c0 44.2 35.8 80 80 80H368c44.2 0 80-35.8
+                  80-80V304c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V144c0-8.8
+                  7.2-16 16-16H208c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/>
+              </svg>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="legend-body">
+        <div class="results-header">
+          <img alt="globe icon" class="img" src="/earth-americas-solid.svg">
+          <h1>Recent results</h1>
+        </div>
+        <p class="subheading">Pollutants</p>
+        <div class="measurements">
+          <div class="pollutant" id="pm25">
+            <div class="ring" id="pm25-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>PM2.5</span>
+                  <span id="pm25-value">-- µg/m³</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pollutant" id="pm10">
+            <div class="ring" id="pm10-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>PM10</span>
+                  <span id="pm10-value">-- µg/m³</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pollutant" id="ozone">
+            <div class="ring" id="ozone-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>O₃</span>
+                  <span id="ozone-value">-- µg/m³</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="subheading">Weather data</p>
+
+        <div class="weather-measurements">
+          <div class="pollutant" id="temp">
+            <div class="ring" id="temp-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>Temp</span>
+                  <span id="temp-value">-- °C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pollutant" id="humidity">
+            <div class="ring" id="humidity-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>Humid</span>
+                  <span id="humidity-value">-- %</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pollutant" id="pressure">
+            <div class="ring" id="pressure-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>Press</span>
+                  <span id="pressure-value">-- hPa</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pollutant" id="wind">
+            <div class="ring" id="wind-ring">
+              <div class="inner">
+                <div class="label">
+                  <span>Wind</span>
+                  <span id="wind-value">-- m/s</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="ebe">AQI prediction</p>
+      <div id="chart-wrapper">
+        <canvas id="chart"></canvas>
       </div>
     </section>
-    <div id="map"></div>
   </div>
 </div>

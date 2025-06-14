@@ -1,0 +1,33 @@
+.terms-wrapper {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+  color: #d1d5db;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.terms-wrapper h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.terms-wrapper h2 {
+  font-size: 20px;
+  margin-top: 30px;
+  color: #13c68aff;
+}
+
+.terms-wrapper p {
+  line-height: 1.6;
+  margin: 10px 0;
+  color: #5c5c5c;
+}
+.terms-wrapper a {
+  color: #13c68aff;
+  text-decoration: none;
+}
+.terms-wrapper a:hover {
+  color: #6ee7b7;
+  text-decoration: underline;
+}

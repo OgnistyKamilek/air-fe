@@ -1,0 +1,150 @@
+.main-footer {
+  background: linear-gradient(to right, #1f2937, #111827);
+  color: #fff;
+  padding: 40px 20px;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 0 50px;
+}
+
+.footer-column, .footer-brand {
+  flex: 1 1 220px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-logo {
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer-partners {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-partners li {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.partner-logo {
+  height: 40px;
+  width: 80px;
+  object-fit: contain;
+  align-items: start;
+  padding: 4px;
+}
+
+.footer-contact p,
+.footer-brand p,
+.footer-column p,
+.authors-list p {
+  margin: 0;
+  color: #9ca3af;
+}
+
+.footer-contact a,
+.footer-brand a,
+.footer-regulamin,
+.footer-polityka,
+.main-footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-contact a:hover,
+.footer-brand a:hover,
+.footer-regulamin:hover,
+.footer-polityka:hover,
+.main-footer a:hover {
+  color: #6ee7b7;
+  text-decoration: underline;
+}
+
+.cta-button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #13c68aff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.footer-bottom {
+  text-align: left;
+  border-top: 1px solid #374151;
+  margin-top: 30px;
+  padding-top: 20px;
+  padding-left: 50px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.data-info {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.socials img {
+  height: 24px;
+  width: 24px;
+  transition: transform 0.3s;
+  background-color: transparent;
+}
+
+.socials img:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 1024px) {
+  .footer-container {
+    justify-content: space-evenly;
+    text-align: center;
+  }
+
+  .footer-column, .footer-brand {
+    flex: 1 1 calc(50% - 40px);
+    margin-bottom: 20px;
+  }
+
+  .cta-button {
+    align-self: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-column, .footer-brand {
+    flex: 1 1 100%;
+  }
+}
+
+
+

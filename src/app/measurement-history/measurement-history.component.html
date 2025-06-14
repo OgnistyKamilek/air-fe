@@ -1,0 +1,95 @@
+<div class="main-container">
+  <div class="filter-background">
+    <div class="filter-container">
+    <h2>Air Quality – PM10, PM2.5, CO & NO₂</h2>
+
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+      <!-- City selection (latitude,longitude) -->
+      <label for="city">City:</label>
+      <select id="city" name="city" ngModel required>
+        <option value=""> Select a city </option>
+        <option value="50.0875,19.9619">Białystok</option>
+        <option value="51.1276,16.9730">Bielsko-Biała</option>
+        <option value="53.1235,18.0084">Bydgoszcz</option>
+        <option value="50.3480,18.9328">Chorzów</option>
+        <option value="50.8118,19.1203">Częstochowa</option>
+        <option value="50.7727,16.2849">Dzierżoniów</option>
+        <option value="54.3520,18.6466">Gdańsk</option>
+        <option value="52.2297,21.0122">Gdynia</option>
+        <option value="50.2945,18.6714">Gliwice</option>
+        <option value="52.4083,16.9336">Poznań</option>
+        <option value="50.0614,19.9372">Kraków</option>
+        <option value="51.1079,17.0385">Wrocław</option>
+        <option value="52.2297,21.0122">Warszawa</option>
+        <option value="50.2649,19.0238">Katowice</option>
+        <option value="50.8661,20.6286">Kielce</option>
+        <option value="51.2465,22.5684">Lublin</option>
+        <option value="51.7592,19.4560">Łódź</option>
+        <option value="50.6793,17.9219">Jaworzno</option>
+        <option value="50.0375,22.0049">Jarosław</option>
+        <option value="50.6753,17.9213">Przemyśl</option>
+        <option value="50.0413,21.9991">Rzeszów</option>
+        <option value="53.4285,14.5528">Szczecin</option>
+        <option value="50.2863,19.1040">Sosnowiec</option>
+        <option value="53.0138,18.5984">Toruń</option>
+        <option value="51.0027,20.9727">Tarnobrzeg</option>
+        <option value="50.2863,19.1040">Tychy</option>
+        <option value="52.2297,21.0122">Wałbrzych</option>
+        <option value="53.7784,20.4801">Olsztyn</option>
+        <option value="50.2863,19.1040">Ruda Śląska</option>
+        <option value="50.2863,19.1040">Siemianowice Śląskie</option>
+        <option value="50.2863,19.1040">Skierniewice</option>
+        <option value="50.2863,19.1040">Słupsk</option>
+        <option value="50.2863,19.1040">Suwałki</option>
+        <option value="50.2863,19.1040">Świętochłowice</option>
+        <option value="50.2863,19.1040">Tarnów</option>
+        <option value="50.2863,19.1040">Włocławek</option>
+        <option value="50.2863,19.1040">Zabrze</option>
+        <option value="50.2863,19.1040">Zamość</option>
+        <option value="50.2863,19.1040">Zgierz</option>
+        <option value="50.2863,19.1040">Zielona Góra</option>
+        <option value="50.2863,19.1040">Żory</option>
+        <option value="50.2863,19.1040">Żyrardów</option>
+      </select>
+
+      <!-- Date range -->
+      <label for="start-date">Start Date:</label>
+      <input
+        type="date"
+        id="start-date"
+        name="start-date"
+        [min]="minDate"
+        [max]="maxDate"
+        ngModel
+        required
+      />
+
+      <label for="end-date">End Date:</label>
+      <input
+        type="date"
+        id="end-date"
+        name="end-date"
+        [max]="maxDate"
+        ngModel
+        required
+      />
+
+      <button type="submit">Show Charts</button>
+      <div id="loading" class="loading" *ngIf="isLoading">Loading data...</div>
+    </form>
+  </div>
+  </div>
+
+
+  <!-- ONE chart-container per pollutant; rendered via ngFor -->
+  <ng-container *ngFor="let p of pollutantChartDataList">
+    <div class="chart-container">
+      <canvas
+        baseChart
+        [data]="p.chartData"
+        [options]="p.chartOptions"
+        [type]="'line'"
+      ></canvas>
+    </div>
+  </ng-container>
+</div>

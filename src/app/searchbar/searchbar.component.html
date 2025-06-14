@@ -1,18 +1,20 @@
-
 <div class="search-bar-container">
+  <div class="background-container"></div>
   <section class="search-bar">
-  <div class="introduction">
-    <h1>Search Air Quality</h1>
-    <br>
-    <p>Get real-time insights into the air quality of your city and beyond. Search for any place around the world to
-      see how clean or polluted the air is, and make informed decisions for your health and well-being.</p>
-    <div class="input-container">
+    <div class="introduction">
+      <h1>Search Air Quality</h1>
+      <br>
+      <p class="desc">Get real-time insights into the air quality of your city and beyond. Search for any place around
+        the world to
+        see how clean or polluted the air is, and make informed decisions for your health and well-being.</p>
+      <div class="input-container">
         <label for="search-input">
-          <img class="img" src="/magnifying-glass-location-solid.svg" alt="search icon">
+          <img alt="search icon" class="img" src="/magnifying-glass-location-solid.svg">
         </label>
-      <input class="input" type="text" id="search-input" maxlength="40" placeholder="Search your city" onfocus="this.placeholder=''" onblur="this.placeholder='Search your city'">
+        <input class="input" id="search-input" maxlength="40" onblur="this.placeholder='Search your city'" onfocus="this.placeholder=''"
+               placeholder="Search your city" type="text">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </div>
 
